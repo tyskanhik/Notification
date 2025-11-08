@@ -1,0 +1,242 @@
+.modal {
+  &-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+    animation: fadeIn 0.2s ease-out;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &-content {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 
+      0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    min-width: 400px;
+    max-width: 500px;
+    width: 100%;
+    border-top: 4px solid #ccc;
+    animation: scaleIn 0.2s ease-out;
+    overflow: hidden;
+
+    // Типы модальных окон
+    &.modal-success {
+      border-top-color: #10b981;
+    }
+
+    &.modal-warning {
+      border-top-color: #f59e0b;
+    }
+
+    &.modal-error {
+      border-top-color: #ef4444;
+    }
+  }
+
+  &-header {
+    padding: 20px 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  &-body {
+    padding: 20px 24px;
+  }
+
+  &-footer {
+    padding: 0 24px 24px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.header {
+  &-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+  }
+}
+
+.title {
+  margin: 0;
+  color: #1f2937;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.message {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+  
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+}
+
+.close {
+  &-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+      transform: scale(1.1);
+    }
+
+    &:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  &-icon {
+    font-size: 24px;
+    color: #6b7280;
+    display: block;
+    line-height: 1;
+    font-weight: 300;
+  }
+}
+
+.ok-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-width: 80px;
+
+  &:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+  }
+
+  &:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  // Состояния для разных типов уведомлений
+  .modal-success & {
+    background: #10b981;
+    
+    &:hover {
+      background: #059669;
+      box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+    }
+  }
+
+  .modal-warning & {
+    background: #f59e0b;
+    
+    &:hover {
+      background: #d97706;
+      box-shadow: 0 4px 8px rgba(245, 158, 11, 0.3);
+    }
+  }
+
+  .modal-error & {
+    background: #ef4444;
+    
+    &:hover {
+      background: #dc2626;
+      box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+    }
+  }
+}
+
+// Анимации
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+  }
+  to { 
+    opacity: 1; 
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+// Адаптивность
+@media (max-width: 640px) {
+  .modal {
+    &-overlay {
+      padding: 16px;
+    }
+
+    &-content {
+      min-width: unset;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    &-header {
+      padding: 16px 20px 0;
+    }
+
+    &-body {
+      padding: 16px 20px;
+    }
+
+    &-footer {
+      padding: 0 20px 20px;
+    }
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .message {
+    font-size: 13px;
+  }
+}
