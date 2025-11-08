@@ -1,0 +1,17 @@
+<!-- Toast Notifications -->
+<div class="toast-container">
+  @for (toast of toasts(); track toast.id) {
+    <app-toast-notification 
+      [notification]="toast"
+      (onClose)="removeToast(toast.id)"
+    />
+  }
+</div>
+
+<!-- Modal Notifications -->
+@for (modal of modals(); track modal.id) {
+  <app-modal-notification 
+    [notification]="modal"
+    (onClose)="removeModal(modal.id)"
+  />
+}
