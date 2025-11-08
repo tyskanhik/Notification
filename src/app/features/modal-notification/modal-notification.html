@@ -1,0 +1,20 @@
+<div class="modal-overlay" (click)="onClose.emit()">
+  <div class="modal-content modal-{{notification().type}}" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <div class="header-content">
+        <h3 class="title">{{ notification().title }}</h3>
+      </div>
+      <button class="close-btn" (click)="onClose.emit()" aria-label="Close modal">
+        <span class="close-icon">×</span>
+      </button>
+    </div>
+    
+    <div class="modal-body">
+      <p class="message">{{ notification().message }}</p>
+    </div>
+    
+    <div class="modal-footer">
+      <button class="ok-btn" (click)="onClose.emit()">OK</button>
+    </div>
+  </div>
+</div>

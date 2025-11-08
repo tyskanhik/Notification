@@ -1,0 +1,125 @@
+<app-notification-container />
+
+<div class="app">
+  <header class="app-header">
+    <h1>🔔 Создание Уведомлений</h1>
+  </header>
+
+  <main class="app-main">
+    <div class="form-section">
+      <!-- Форма создания уведомления -->
+      <div class="notification-form">
+        <h2>Создать уведомление</h2>
+        
+        <div class="form-group">
+          <label>Тип уведомления:</label>
+          <select [(ngModel)]="form.type" class="form-control">
+            <option value="success">✅ Успех</option>
+            <option value="warning">⚠️ Предупреждение</option>
+            <option value="error">❌ Ошибка</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Способ показа:</label>
+          <select [(ngModel)]="form.channel" class="form-control" (change)="onChannelChange()">
+            <option value="toast">Всплывающее (Toast)</option>
+            <option value="modal">Модальное окно</option>
+            <option value="alert">Браузерный Alert</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Заголовок:</label>
+          <input 
+            type="text" 
+            [(ngModel)]="form.title" 
+            class="form-control" 
+            placeholder="Введите заголовок"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Сообщение:</label>
+          <textarea 
+            [(ngModel)]="form.message" 
+            class="form-control" 
+            rows="3"
+            placeholder="Введите сообщение"
+          ></textarea>
+        </div>
+
+        <!-- Время показа - только для Toast -->
+        @if (isDurationAvailable) {
+          <div class="form-group">
+            <label>Время показа (секунды):</label>
+            <input 
+              type="number" 
+              [(ngModel)]="form.duration" 
+              class="form-control" 
+              min="0" 
+              max="60"
+            >
+            <small>0 = бесконечно</small>
+          </div>
+        }
+
+        <div class="form-group">
+          <label>Задержка (секунды):</label>
+          <input 
+            type="number" 
+            [(ngModel)]="form.delay" 
+            class="form-control" 
+            min="0" 
+            max="10"
+          >
+          <small>Задержка перед показом уведомления</small>
+        </div>
+
+        <!-- Группировка - только для Toast -->
+        @if (isGroupingAvailable) {
+          <div class="form-group">
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" [(ngModel)]="form.grouped">
+                Группировать уведомления
+              </label>
+              
+              @if (form.grouped) {
+                <div class="group-info">
+                  <small>
+                    📊 Уведомления с одинаковым текстом будут объединяться в одно с счетчиком
+                  </small>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        <!-- Кнопки -->
+        <div class="form-actions">
+          <button 
+            (click)="showNotification()" 
+            class="btn btn-primary"
+            [disabled]="!form.title || !form.message"
+          >
+            Показать уведомление
+          </button>
+          
+          @if (isGroupingAvailable) {
+            <button 
+              (click)="showGroupedExample()" 
+              class="btn btn-secondary"
+            >
+              Тест группировки
+            </button>
+          }
+
+          <button (click)="clearForm()" class="btn btn-clear">
+            Очистить
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

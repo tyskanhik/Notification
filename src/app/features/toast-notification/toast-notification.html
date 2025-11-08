@@ -1,0 +1,21 @@
+<div class="toast toast-{{notification().type}}">
+  <div class="toast__content">
+    <div class="toast__text">
+      <strong class="toast__title">{{ notification().title }}</strong>
+      <p class="toast__message">{{ notification().message }}</p>
+      @if (notification().duration) {
+        <div class="toast__duration">
+          Исчезнет через: {{ notification().duration }}с
+        </div>
+      }
+    </div>
+    <button 
+      class="toast__close-btn" 
+      (click)="onClose.emit()" 
+      aria-label="Закрыть уведомление"
+      type="button"
+    >
+      <span class="toast__close-icon">×</span>
+    </button>
+  </div>
+</div>
