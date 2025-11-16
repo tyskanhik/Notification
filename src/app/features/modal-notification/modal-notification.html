@@ -1,20 +1,50 @@
-<div class="modal-overlay" (click)="onClose.emit()">
-  <div class="modal-content modal-{{notification().type}}" (click)="$event.stopPropagation()">
+<!-- modal-notification.component.html -->
+<div 
+  class="modal-overlay" 
+  (click)="onClose.emit()"
+  data-cy="modal-overlay"
+>
+  <div 
+    class="modal-content modal-{{notification().type}}" 
+    (click)="$event.stopPropagation()"
+    data-cy="modal-content"
+  >
     <div class="modal-header">
       <div class="header-content">
-        <h3 class="title">{{ notification().title }}</h3>
+        <h3 
+          class="title"
+          data-cy="modal-title"
+        >
+          {{ notification().title }}
+        </h3>
       </div>
-      <button class="close-btn" (click)="onClose.emit()" aria-label="Close modal">
+      <button 
+        class="close-btn" 
+        (click)="onClose.emit()" 
+        aria-label="Close modal"
+        data-cy="close-modal-button"
+      >
         <span class="close-icon">×</span>
       </button>
     </div>
     
     <div class="modal-body">
-      <p class="message">{{ notification().message }}</p>
+      <p 
+        class="message"
+        data-cy="modal-message"
+      >
+        {{ notification().message }}
+      </p>
     </div>
     
     <div class="modal-footer">
-      <button class="ok-btn" (click)="onClose.emit()">OK</button>
+      <button 
+        class="ok-btn" 
+        (click)="onClose.emit()"
+        data-cy="modal-ok-button"
+      >
+        OK
+      </button>
     </div>
   </div>
 </div>

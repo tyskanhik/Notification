@@ -1,10 +1,27 @@
-<div class="toast toast-{{notification().type}}">
+<!-- toast-notification.component.html -->
+<div 
+  class="toast toast-{{notification().type}}"
+  data-cy="toast-notification-item"
+>
   <div class="toast__content">
     <div class="toast__text">
-      <strong class="toast__title">{{ notification().title }}</strong>
-      <p class="toast__message">{{ notification().message }}</p>
+      <strong 
+        class="toast__title"
+        data-cy="notification-title"
+      >
+        {{ notification().title }}
+      </strong>
+      <p 
+        class="toast__message"
+        data-cy="notification-message"
+      >
+        {{ notification().message }}
+      </p>
       @if (notification().duration) {
-        <div class="toast__duration">
+        <div 
+          class="toast__duration"
+          data-cy="notification-duration"
+        >
           Исчезнет через: {{ notification().duration }}с
         </div>
       }
@@ -14,6 +31,7 @@
       (click)="onClose.emit()" 
       aria-label="Закрыть уведомление"
       type="button"
+      data-cy="close-toast-button"
     >
       <span class="toast__close-icon">×</span>
     </button>

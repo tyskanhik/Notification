@@ -1,3 +1,4 @@
+<!-- app.html - ОБНОВЛЕННАЯ ВЕРСИЯ -->
 <app-notification-container />
 
 <div class="app">
@@ -7,13 +8,16 @@
 
   <main class="app-main">
     <div class="form-section">
-      <!-- Форма создания уведомления -->
       <div class="notification-form">
         <h2>Создать уведомление</h2>
         
         <div class="form-group">
           <label>Тип уведомления:</label>
-          <select [(ngModel)]="form.type" class="form-control">
+          <select 
+            [(ngModel)]="form.type" 
+            class="form-control"
+            data-cy="type-select"
+          >
             <option value="success">✅ Успех</option>
             <option value="warning">⚠️ Предупреждение</option>
             <option value="error">❌ Ошибка</option>
@@ -22,7 +26,12 @@
 
         <div class="form-group">
           <label>Способ показа:</label>
-          <select [(ngModel)]="form.channel" class="form-control" (change)="onChannelChange()">
+          <select 
+            [(ngModel)]="form.channel" 
+            class="form-control" 
+            (change)="onChannelChange()"
+            data-cy="channel-select"
+          >
             <option value="toast">Всплывающее (Toast)</option>
             <option value="modal">Модальное окно</option>
             <option value="alert">Браузерный Alert</option>
@@ -36,6 +45,7 @@
             [(ngModel)]="form.title" 
             class="form-control" 
             placeholder="Введите заголовок"
+            data-cy="title-input"
           >
         </div>
 
@@ -46,6 +56,7 @@
             class="form-control" 
             rows="3"
             placeholder="Введите сообщение"
+            data-cy="message-textarea"
           ></textarea>
         </div>
 
@@ -59,6 +70,7 @@
               class="form-control" 
               min="0" 
               max="60"
+              data-cy="duration-input"
             >
             <small>0 = бесконечно</small>
           </div>
@@ -72,8 +84,9 @@
             class="form-control" 
             min="0" 
             max="10"
+            data-cy="delay-input"
           >
-          <small>Задержка перед показом уведомления</small>
+            <small>Задержка перед показом уведомления</small>
         </div>
 
         <!-- Группировка - только для Toast -->
@@ -81,7 +94,11 @@
           <div class="form-group">
             <div class="checkbox-group">
               <label class="checkbox-label">
-                <input type="checkbox" [(ngModel)]="form.grouped">
+                <input 
+                  type="checkbox" 
+                  [(ngModel)]="form.grouped"
+                  data-cy="grouped-checkbox"
+                >
                 Группировать уведомления
               </label>
               
@@ -102,6 +119,7 @@
             (click)="showNotification()" 
             class="btn btn-primary"
             [disabled]="!form.title || !form.message"
+            data-cy="submit-button"
           >
             Показать уведомление
           </button>
@@ -110,12 +128,17 @@
             <button 
               (click)="showGroupedExample()" 
               class="btn btn-secondary"
+              data-cy="grouped-example-button"
             >
               Тест группировки
             </button>
           }
 
-          <button (click)="clearForm()" class="btn btn-clear">
+          <button 
+            (click)="clearForm()" 
+            class="btn btn-clear"
+            data-cy="clear-button"
+          >
             Очистить
           </button>
         </div>
