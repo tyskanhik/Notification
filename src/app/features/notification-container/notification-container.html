@@ -4,6 +4,7 @@
     <app-toast-notification 
       [notification]="toast"
       (onClose)="removeToast(toast.id)"
+      data-cy="toast-notification"
     />
   }
 </div>
@@ -13,5 +14,6 @@
   <app-modal-notification 
     [notification]="modal"
     (onClose)="removeModal(modal.id)"
+    data-cy="modal-notification"
   />
 }
